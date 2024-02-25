@@ -4,4 +4,4 @@ Terraform
 
 Ansible
 
-GITHUB Actions
+GitHub Actions
