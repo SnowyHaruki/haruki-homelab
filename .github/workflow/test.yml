@@ -1,0 +1,51 @@
+name: TEST
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '1_home_apps/homepage/**'
+      - '1_home_apps/homepage/data/**'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: "self-hosted"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Copy compose file
+        uses: appleboy/scp-action@master
+        with:
+          username: debian
+          host: core.mistysnowrealms.net
+          password: debian
+          source: './1_home_apps/homepage/docker-compose.yaml'
+          target: '/opt/stacks/homepage/'
+          strip_components: 3
+          overwrite: true
+
+
+      - name: Upload new Config Files
+        uses: appleboy/scp-action@master
+        with:
+          username: debian
+          host: core.mistysnowrealms.net
+          password: debian
+          source: './1_home_apps/homepage/data/*'
+          target: '/opt/stacks/homepage/data/'
+          strip_components: 3
+          overwrite: true
+
+      - name: Start Docker Test
+        uses: fifsky/ssh-action@master
+        with:
+          user: debian
+          host: core.mistysnowrealms.net
+          password: debian
+          command: |
+            cd /opt/stacks/homepage/
+            docker compose up -d
