@@ -21,7 +21,7 @@ jobs:
         uses: appleboy/scp-action@master
         with:
           username: debian
-          host: core.mistysnowrealms.net
+          host: monitor.mistysnowrealms.net
           password: debian
           source: './1_home_apps/homepage/docker-compose.yaml'
           target: '/opt/stacks/homepage/'
