@@ -73,7 +73,7 @@ resource "proxmox_vm_qemu" "int-core" {
     ciuser = "debian"
     cipassword = "debian"
     
-    # (Optional) Add your SSH KEY
+    # SSH KEY
     sshkeys = <<EOF
       ${var.ssh_key}
       EOF
