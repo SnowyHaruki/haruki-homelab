@@ -1,0 +1,37 @@
+- name: install apt
+  hosts: "*"
+  tasks:
+    - name: apt
+      apt:
+        update_cache: yes
+        upgrade: 'yes'
+      become: yes
+        
+- name: install latest qemu-guest-agent
+  hosts: "*"
+  tasks:
+    - name: install qemu-guest-agent
+      apt:
+        name: qemu-guest-agent
+        state: present
+        update_cache: true
+      become: true
+
+- name: install latest neofetch
+  hosts: "*"
+  tasks:
+    - name: install neofetch
+      apt:
+        name: neofetch
+        state: present
+        update_cache: true
+      become: true
+
+- name: copy the MOTD
+  hosts: "*"
+  - name: copy motd file to server
+  tasks:
+    copy: 
+      src=../templates/motd 
+      dest=/etc/motd
+  become: true
