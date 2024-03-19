@@ -22,7 +22,7 @@ resource "proxmox_vm_qemu" "int-core" {
     # VM System Settings
     agent = 1
     
-    # VM Hardware ettings
+    # VM Hardware Settings
     cores = 4
     sockets = 1
     cpu = "host"
