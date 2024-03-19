@@ -22,7 +22,7 @@ resource "proxmox_vm_qemu" "int-core" {
     # VM System Settings
     agent = 1
     
-    # VM Hardware ettings
+    # VM Hardware Settings
     cores = 4
     sockets = 1
     cpu = "host"
@@ -73,7 +73,7 @@ resource "proxmox_vm_qemu" "int-core" {
     ciuser = "debian"
     cipassword = "debian"
     
-    # (Optional) Add your SSH KEY
+    # SSH KEY
     sshkeys = <<EOF
       ${var.ssh_key}
       EOF
