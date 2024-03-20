@@ -1,5 +1,5 @@
 - name: Install Docker Engine
-  hosts: all
+  hosts: docker
   become: yes
  
   tasks:
@@ -38,3 +38,36 @@
       service:
         name: docker
         state: started
+
+- name: Dockge setup
+  hosts: docker
+  become: yes
+
+  tasks: 
+    - name: Create Dockge directory
+      file:
+        path: /opt/dockge
+        state: directory
+        mode: '0755'
+
+    - name: Create Stacks directory
+      file:
+        path: /opt/stacks
+        state: directory
+        mode: '0755'
+
+    - name: Download Dockge docker compose yml file
+      get_url:
+        url: https://raw.githubusercontent.com/louislam/dockge/master/compose.yaml 
+        validate_certs: false
+        dest: "/opt/dockge/compose.yaml"
+        mode: '0755'
+
+    - name: Create and start service
+      community.docker.docker_compose_v2:
+        project_src: /opt/dockge/
+      register: output
+
+    - name: Show results
+      ansible.builtin.debug:
+        var: output

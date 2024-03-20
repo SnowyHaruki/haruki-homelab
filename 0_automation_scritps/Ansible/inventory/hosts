@@ -1,3 +1,9 @@
-all:
-  hosts:
-    172.16.150.3:
+[all]
+inthome-01v ansible_host=172.16.150.201
+inthome-02v ansible_host=172.16.150.202
+inthome-03v ansible_host=172.16.150.203
+
+[home]
+inthome-01v ansible_host=172.16.150.201
+inthome-02v ansible_host=172.16.150.202
+inthome-03v ansible_host=172.16.150.203

@@ -1,4 +1,4 @@
-- name: install apt
+- name: Install apt
   hosts: "*"
   tasks:
     - name: apt
@@ -7,31 +7,44 @@
         upgrade: 'yes'
       become: yes
         
-- name: install latest qemu-guest-agent
+- name: Install latest qemu-guest-agent
   hosts: "*"
   tasks:
-    - name: install qemu-guest-agent
+    - name: Install qemu-guest-agent
       apt:
         name: qemu-guest-agent
         state: present
         update_cache: true
       become: true
 
-- name: install latest neofetch
+- name: Install latest curl
   hosts: "*"
   tasks:
-    - name: install neofetch
+    - name: Install curl
+      apt:
+        name: curl
+        state: present
+        update_cache: true
+      become: true
+
+- name: Install latest neofetch
+  hosts: "*"
+  tasks:
+    - name: Install neofetch
       apt:
         name: neofetch
         state: present
         update_cache: true
       become: true
 
-- name: copy the MOTD
+- name: Copy the MOTD
   hosts: "*"
-  - name: copy motd file to server
+  - name: Remove MOTD and Copy MOTD script to server
   tasks:
+    ansible.builtin.file:
+      path: /etc/motd
+      state: absent
     copy: 
-      src=../templates/motd 
-      dest=/etc/motd
+      src=../templates/motd.sh
+      dest=/etc/profile.d/motd.sh
   become: true

@@ -77,4 +77,28 @@ resource "proxmox_vm_qemu" "int-core" {
     sshkeys = <<EOF
       ${var.ssh_key}
       EOF
+  
+    #VM Lifecyle Settings
+    lifecycle {
+      ignore_changes = [
+        network, disk, sshkeys, target_node
+    ]
+  }
+
+}
+
+data "template_file" "hostfile" {
+  template = file("host.tpl")
+  vars = {
+    home_vm_ip = "${join("\n", [for instance in proxmox_vm_qemu.int-core : join("", [instance.name, " ansible_host=", instance.default_ipv4_address])])}"
+  }
+}
+
+resource "local_file" "hosts" {
+  content  = data.template_file.hostfile.rendered
+  filename = "../Ansible/inventory/hosts"
+}
+
+output "Home-IPs" {
+  value = ["${proxmox_vm_qemu.int-core.*.default_ipv4_address}"]
 }
