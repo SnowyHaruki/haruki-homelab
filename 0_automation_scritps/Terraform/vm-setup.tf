@@ -94,7 +94,7 @@ resource "proxmox_vm_qemu" "monitor" {
     # VM General Settings
     name = "msrlmonitor-0${count.index + 1}v"
     desc = "*Automatically created by Terraform.*<br>Monitor"
-
+    vmid = "1000"
     # VM Advanced General Settings
     onboot = true 
 
