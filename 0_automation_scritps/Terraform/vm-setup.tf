@@ -8,7 +8,8 @@ resource "proxmox_vm_qemu" "home" {
     target_node = var.proxmox_host
 
     # VM General Settings
-    name = "msrlhome-0${count.index}v"
+    vmid = var.vm_id[count.index]
+    name = var.vm_hostname[count.index]
     desc = "*Automatically created by Terraform.*<br>Internal"
 
     # VM Advanced General Settings
