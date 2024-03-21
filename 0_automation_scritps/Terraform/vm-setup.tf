@@ -78,7 +78,7 @@ resource "proxmox_vm_qemu" "home" {
       ${var.ssh_key}
       EOF
   
-    #VM Lifecyle Settings
+    # VM Lifecyle Settings
     lifecycle {
       ignore_changes = [
         name, network, disk, sshkeys, target_node
@@ -162,7 +162,7 @@ resource "proxmox_vm_qemu" "monitor" {
       ${var.ssh_key}
       EOF
   
-    #VM Lifecyle Settings
+    # VM Lifecyle Settings
     lifecycle {
       ignore_changes = [
         name, network, disk, sshkeys, target_node
