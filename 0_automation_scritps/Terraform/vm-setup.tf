@@ -81,7 +81,7 @@ resource "proxmox_vm_qemu" "home" {
     #VM Lifecyle Settings
     lifecycle {
       ignore_changes = [
-        network, disk, sshkeys, target_node
+        name, network, disk, sshkeys, target_node
     ]
   }
 
@@ -165,7 +165,7 @@ resource "proxmox_vm_qemu" "monitor" {
     #VM Lifecyle Settings
     lifecycle {
       ignore_changes = [
-        network, disk, sshkeys, target_node
+        name, network, disk, sshkeys, target_node
     ]
   }
 
