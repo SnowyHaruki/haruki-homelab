@@ -4,4 +4,6 @@ Homepage
 
 Ngnix Proxy Manager
 
+Pi-Hole
+
 Wireguard VPN
