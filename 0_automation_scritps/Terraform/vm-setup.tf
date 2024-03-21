@@ -67,7 +67,7 @@ resource "proxmox_vm_qemu" "home" {
     cloudinit_cdrom_storage = "local-lvm"
 
     # IP Address and Gateway
-    ipconfig0 = "ip=172.16.150.15${count.index + 1}/24,gw=172.16.150.254"
+    ipconfig0 = "ip=172.16.150.15${count.index}/24,gw=172.16.150.254"
     
     # Cloudinit User
     ciuser = "debian"
