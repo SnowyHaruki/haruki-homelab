@@ -1,9 +1,11 @@
 [all]
-inthome-01v ansible_host=172.16.150.201
-inthome-02v ansible_host=172.16.150.202
-inthome-03v ansible_host=172.16.150.203
+msrl-home-01v ansible_host=172.16.150.101
+msrl-home-02v ansible_host=172.16.150.102
+msrl-monitor-01v ansible_host=172.16.150.201
 
 [home]
-inthome-01v ansible_host=172.16.150.201
-inthome-02v ansible_host=172.16.150.202
-inthome-03v ansible_host=172.16.150.203
+msrl-home-01v ansible_host=172.16.150.101
+msrl-home-02v ansible_host=172.16.150.102
+
+[monitor]
+msrl-monitor-01v ansible_host=172.16.150.201

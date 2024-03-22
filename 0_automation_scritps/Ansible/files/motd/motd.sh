@@ -1,4 +1,5 @@
 #!/bin/bash
+clear
 CPU=`lscpu | grep 'Model name' | cut -f 2 -d ":" | awk '{$1=$1}1'`
 upSeconds="$(/usr/bin/cut -d. -f1 /proc/uptime)"
 secs=$((${upSeconds}%60))
