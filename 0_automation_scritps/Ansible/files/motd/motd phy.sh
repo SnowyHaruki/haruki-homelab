@@ -1,6 +1,8 @@
 #!/bin/bash
 clear
-CPU=`lscpu | grep 'Model name' | cut -f 2 -d ":" | awk '{$1=$1}1'`
+echo ""
+echo ""
+CPU=`cat /proc/cpuinfo | grep 'name'| uniq | cut -f 2 -d ":" | awk '{$1=$1}1'`
 upSeconds="$(/usr/bin/cut -d. -f1 /proc/uptime)"
 secs=$((${upSeconds}%60))
 mins=$((${upSeconds}/60%60))
@@ -36,7 +38,7 @@ echo "
   Load Averages......: ${one} (1 minute) ${five} (5 minutes) ${fifteen} (15 minutes)
   Root Drive.........: `df -h -x tmpfs -x vfat -x devtmpfs | awk 'NR==2 {print $5 " (" $3 "/" $2 ") used on " $1 }'`
 
-  * YOU ARE NOW ACCESSING MISTY SNOW REALMS VIRTUAL MACHINE!
+  * YOU ARE NOW ACCESSING MISTY SNOW REALMS PHYSICAL MACHINE!
   * ONLY AUTHORIZED PERSONAL HAVE ACCESS TO THIS ENVIRONMENT!
 
 "
