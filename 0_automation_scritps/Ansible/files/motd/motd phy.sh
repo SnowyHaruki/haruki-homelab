@@ -33,7 +33,7 @@ echo "
 
   Last login.........: `lastlog -u ${USER} | awk 'NR==2 {$1=$2=$3=""; print $0}' | awk '$1=$1'` from `lastlog -u ${USER} | awk 'NR==2 {print $3}'`
   Uptime.............: ${UPTIME}
-  CPU................: $CPU
+  CPU................: ${CPU}
   Memory.............: `free -h | awk 'NR==2 {print $4}'` (Free) / `free -h | awk 'NR==2 {print $2}'` (Total)
   Load Averages......: ${one} (1 minute) ${five} (5 minutes) ${fifteen} (15 minutes)
   Root Drive.........: `df -h -x tmpfs -x vfat -x devtmpfs | awk 'NR==2 {print $5 " (" $3 "/" $2 ") used on " $1 }'`
