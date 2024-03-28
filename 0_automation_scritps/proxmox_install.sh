@@ -52,7 +52,7 @@ function create_template() {
 #Path to your ssh authorized_keys file
 #Alternatively, use /etc/pve/priv/authorized_keys if you are already authorized
 #on the Proxmox system
-export ssh_keyfile=/root/id_rsa.pub
+export ssh_keyfile=/root/ssh-key/id_rsa_misty.pub
 #Username to create on VM template
 export username=misty
 
