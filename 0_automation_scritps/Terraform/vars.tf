@@ -2,7 +2,7 @@ variable "proxmox_host" {
   default = "atlas"
 }
 variable "template_name" {
-  default = "debian12-cloud"
+  default = "debian-12-cloud-img"
 }
 
 variable "ssh_key" {
