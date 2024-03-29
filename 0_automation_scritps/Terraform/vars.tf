@@ -6,7 +6,7 @@ variable "template_name" {
 }
 
 variable "ssh_key" {
-  default = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPXNpIsGHVA6KAAe8wM9r8sPURxPl/mXOFgY5PLrR7jO debian@mistysnowrealms.net"
+  default = "misty@mistysnowrealms.net"
 }
 
 variable "vm_id_home" {
@@ -39,8 +39,8 @@ variable "vm_hostname_prod" {
   default = ["prod-01"]
 }
 
-variable "vm_ip_deployer" {
-  default = "172.16.150.200"
+variable "vm_ip_creator" {
+  default = "172.16.150.252"
 }
 
 variable "vm_ip_home" {
