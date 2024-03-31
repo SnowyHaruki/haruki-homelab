@@ -1,12 +1,12 @@
 variable "proxmox_host" {
-  default = "atlas"
+  default = "prod-atlas"
 }
 
 variable "template_name" {
   default = "debian-12-cloud-img"
 }
 
-variable "cloudinit_user" {
+variable "  " {
   default = "mistyops"
 }
 
