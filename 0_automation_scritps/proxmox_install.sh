@@ -43,7 +43,6 @@ function create_template() {
     qm disk resize $1 scsi0 5G
     #Make it a template
     qm template $1
-
     #Remove file when done
     rm $3
 }
@@ -71,6 +70,8 @@ export storage=local-lvm
 #create_template 901 "temp-debian-11" "debian-11-genericcloud-amd64.qcow2" 
 #Bookworm (12) (stable)
 wget "https://cloud.debian.org/images/cloud/bookworm/latest/debian-12-genericcloud-amd64.qcow2"
+#Install QEMU Guest Agent
+virt-customize -a debian-12-genericcloud-amd64.qcow2 --install qemu-guest-agent
 create_template 100000 "debian-12-cloud-img" "debian-12-genericcloud-amd64.qcow2"
 #Trixie (13) (testing) dailies
 #wget "https://cloud.debian.org/images/cloud/trixie/daily/latest/debian-13-genericcloud-amd64-daily.qcow2"
