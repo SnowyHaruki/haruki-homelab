@@ -71,7 +71,7 @@ resource "proxmox_vm_qemu" "home" {
     ipconfig0 = "ip=${var.vm_ip_home[count.index]}/24,gw=172.16.150.254"
     
     # Cloudinit User
-    ciuser = "misty"
+    ciuser = var.cloudinit_user
     # cipassword = ""
     
     # SSH KEY
@@ -155,7 +155,7 @@ resource "proxmox_vm_qemu" "monitor" {
     ipconfig0 = "ip=${var.vm_ip_monitor[count.index]}/24,gw=172.16.150.254"
     
     # Cloudinit User
-    ciuser = "misty"
+    ciuser = var.cloudinit_user
     # cipassword = ""
     
     # SSH KEY
