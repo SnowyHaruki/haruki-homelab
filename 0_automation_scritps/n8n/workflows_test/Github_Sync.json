@@ -1,0 +1,121 @@
+{
+  "name": "Github Sync",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "fetch",
+        "repositoryPath": "/home/github"
+      },
+      "id": "89eb00b7-eb11-4c12-9405-e861c8fe428a",
+      "name": "Git",
+      "type": "n8n-nodes-base.git",
+      "typeVersion": 1,
+      "position": [
+        740,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "gitPassword",
+        "operation": "clone",
+        "repositoryPath": "/home/github",
+        "sourceRepository": "https://github.com/SnowyHaruki/haruki-homelab"
+      },
+      "id": "a093d248-183c-4479-9c97-4f7a9f5e0055",
+      "name": "Git1",
+      "type": "n8n-nodes-base.git",
+      "typeVersion": 1,
+      "position": [
+        500,
+        240
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "gitPassword": {
+          "id": "OmS5Ovn4P7kmKgpI",
+          "name": "Git account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "owner": {
+          "__rl": true,
+          "value": "SnowyHaruki",
+          "mode": "list",
+          "cachedResultName": "SnowyHaruki",
+          "cachedResultUrl": "https://github.com/SnowyHaruki"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "haruki-homelab",
+          "mode": "list",
+          "cachedResultName": "haruki-homelab",
+          "cachedResultUrl": "https://github.com/SnowyHaruki/haruki-homelab"
+        },
+        "events": [
+          "push"
+        ],
+        "options": {}
+      },
+      "id": "8aea2f35-146f-46da-abef-1075c9efdd69",
+      "name": "Github Trigger",
+      "type": "n8n-nodes-base.githubTrigger",
+      "typeVersion": 1,
+      "position": [
+        240,
+        240
+      ],
+      "webhookId": "0f2b0568-c14b-43a1-896d-531653b89e3e",
+      "notesInFlow": false,
+      "credentials": {
+        "githubApi": {
+          "id": "00ZMfQzJwkinWoMU",
+          "name": "GitHub account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Git1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Git",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Github Trigger": {
+      "main": [
+        [
+          {
+            "node": "Git1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Lisbon",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "versionId": "f83cccbe-02d1-4e56-ac63-630a2f8d2c33",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "b70f647683d9784045f28a5fed9edef76199b135b097b8fd876d9a7d46ad767f"
+  },
+  "id": "1M2NPlBwdJW4OnBE",
+  "tags": []
+}
