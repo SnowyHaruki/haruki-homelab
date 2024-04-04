@@ -6,7 +6,7 @@ variable "template_name" {
   default = "debian-12-cloud-img"
 }
 
-variable "  " {
+variable "cloudinit_user" {
   default = "mistyops"
 }
 
