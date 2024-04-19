@@ -5,7 +5,7 @@ services:
     environment:
       - LANG=en
       - WG_HOST=dns1-ghsnowforest.duckdns.org
-      - PASSWORD= $WGPW
+      - PASSWORD=$WGPW
     volumes:
       - /opt/stacks/wg-easy/data:/etc/wireguard
     ports:
