@@ -7,7 +7,7 @@ services:
       - WG_HOST=dns1-ghsnowforest.duckdns.org
       - PASSWORD=$WGPW
     volumes:
-      - /opt/stacks/wg-easy/data:/etc/wireguard
+      - /app/wg-easy/data:/etc/wireguard
     ports:
       - 51820:51820/udp
       - 51821:51821/tcp
