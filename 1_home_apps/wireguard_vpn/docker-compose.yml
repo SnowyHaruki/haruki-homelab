@@ -4,8 +4,10 @@ services:
     container_name: wg-easy
     environment:
       - LANG=en
-      - WG_HOST=dns1-ghsnowforest.duckdns.org
+      - WG_HOST=dns1-mistysnowrealm.duckdns.org
       - PASSWORD=$WGPW
+      - WG_DEFAULT_DNS=172.16.100.1, 1.1.1.1
+      - UI_TRAFFIC_STATS=true
     volumes:
       - /app/wg-easy/data:/etc/wireguard
     ports:
