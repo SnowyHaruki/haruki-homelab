@@ -1,0 +1,5 @@
+default:
+    user: probe@pam
+    token_name: "probe-exporter"
+    token_value: "68e6d187-f06a-41d2-8643-d74f66c09029"
+    verify_ssl: false
