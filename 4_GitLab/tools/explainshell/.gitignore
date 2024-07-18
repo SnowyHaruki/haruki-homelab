@@ -1,0 +1,5 @@
+*.pyc
+*.swp
+.coverage
+.vagrant
+application.log

@@ -1,0 +1,20 @@
+image:
+  name: gitlab.msrls.local:5000/root/container-debian-12
+  entrypoint: [""]
+
+stages:
+   - deploy
+
+deploy:
+   stage: deploy
+   script:
+      - mkdir -p ~/.ssh
+      - cat ${gitlab_key} > ~/.ssh/id_rsa
+      - chmod 600 ~/.ssh/id_rsa
+      - ssh -o StrictHostKeyChecking=no monitor.msrls.local "docker ps -a"
+      - ssh -o StrictHostKeyChecking=no monitor.msrls.local "docker kill grafana-web"
+      - scp -o StrictHostKeyChecking=no grafana/docker-compose.yaml monitor.msrls.local:/opt/stacks/grafana
+      - scp -o StrictHostKeyChecking=no grafana/data/grafana.ini monitor.msrls.local:/opt/stacks/grafana/config
+      - ssh -o StrictHostKeyChecking=no monitor.msrls.local "ls -alhrt /opt/stacks/grafana"
+      - ssh -o StrictHostKeyChecking=no monitor.msrls.local "ls -alhrt /opt/stacks/grafana/config"
+      - ssh -o StrictHostKeyChecking=no monitor.msrls.local "cd /opt/stacks/grafana/ && docker compose up -d"

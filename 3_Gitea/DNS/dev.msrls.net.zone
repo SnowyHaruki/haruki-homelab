@@ -1,0 +1,33 @@
+$TTL 2d
+
+$ORIGIN dev.msrls.net.
+@                       IN      SOA   ns1.dev.msrls.net. info.msrls.net. (
+                                2024060800 ; serial number
+                                12h        ; refresh
+                                15m        ; update retry
+                                3w         ; expiry
+                                2h         ; minimum
+                                )
+
+                        IN              NS                      ns1.dev.msrs.net.
+
+ns1                     IN              A                       172.16.100.3
+ns2                     IN              A                       172.16.100.4
+
+; -- dns records
+
+ns1-adm             IN              CNAME               ns1.dev.msrls.net.
+ns2-adm             IN              CNAME               ns2.dev.msrls.net.
+sp0-vpn-adm         IN              A                   172.16.100.5
+adm-vpn-adm         IN              A                   172.16.98.253
+dev-vpn-adm         IN              A                   192.168.110.253
+home-vpn-adm        IN              A                   192.168.120.253
+int-proxy-adm       IN              A                   172.16.100.6
+prod-proxy-adm      IN              A                   10.0.10.1
+atlas01a-adm        IN              A                   172.16.100.1
+anubis01a-adm       IN              A                   172.16.100.2
+gaia01a-adm         IN              A                   172.16.1.3
+master-adm          IN              A                   172.16.98.10
+dev-adm             IN              A                   192.168.110.1
+home-adm            IN              A                   192.168.120.1
+dockge-dev          IN              A                   172.16.100.7

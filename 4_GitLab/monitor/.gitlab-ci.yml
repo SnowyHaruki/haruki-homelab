@@ -1,0 +1,28 @@
+stages:
+  - triggers
+
+probes:
+  stage: triggers
+  trigger:
+    include: probes/.gitlab-ci.yml
+  rules:
+    - changes:
+        - probes/*
+        - probes/data/*
+
+uptimekuma:
+  stage: triggers
+  trigger:
+    include: uptime-kuma/.gitlab-ci.yml
+  rules:
+    - changes:
+        - uptime-kuma/*
+
+grafana:
+  stage: triggers
+  trigger:
+    include: grafana/.gitlab-ci.yml
+  rules:
+    - changes:
+        - grafana/*
+        - grafana/data/*

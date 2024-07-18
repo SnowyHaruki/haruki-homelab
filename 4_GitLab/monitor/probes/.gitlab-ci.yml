@@ -1,0 +1,22 @@
+image:
+  name: gitlab.msrls.local:5000/root/container-debian-12
+  entrypoint: [""]
+
+stages:
+   - deploy
+
+deploy:
+   stage: deploy
+   script:
+      - mkdir -p ~/.ssh
+      - cat ${gitlab_key} > ~/.ssh/id_rsa
+      - chmod 600 ~/.ssh/id_rsa
+      - ssh -o StrictHostKeyChecking=no monitor.msrls.local "docker ps -a"
+      - ssh -o StrictHostKeyChecking=no monitor.msrls.local "docker kill prometheus node_exporter pve-exporter"
+      - scp -o StrictHostKeyChecking=no probes/docker-compose.yaml monitor.msrls.local:/opt/stacks/monitor-data
+      - scp -ro StrictHostKeyChecking=no probes/data/prometheus.yml monitor.msrls.local:/opt/stacks/monitor-data/prometheus
+      - scp -ro StrictHostKeyChecking=no probes/data/pve.yml monitor.msrls.local:/opt/stacks/monitor-data/pve-exporter
+      - ssh -o StrictHostKeyChecking=no monitor.msrls.local "ls -alhrt /opt/stacks/monitor-data"
+      - ssh -o StrictHostKeyChecking=no monitor.msrls.local "ls -alhrt /opt/stacks/monitor-data/prometheus"
+      - ssh -o StrictHostKeyChecking=no monitor.msrls.local "ls -alhrt /opt/stacks/monitor-data/pve-exporter"
+      - ssh -o StrictHostKeyChecking=no monitor.msrls.local "cd /opt/stacks/monitor-data/ && docker compose up -d"

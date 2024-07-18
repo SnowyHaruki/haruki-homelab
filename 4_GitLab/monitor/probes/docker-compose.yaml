@@ -1,0 +1,41 @@
+version: '3'
+
+volumes:
+  prometheus-data:
+    driver: local
+
+services:
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:latest
+    ports:
+      - 9090:9090
+    volumes:
+      - /opt/stacks/monitor-data/prometheus:/etc/prometheus
+      - prometheus-data:/prometheus
+    restart: unless-stopped
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+
+  node_exporter:
+    container_name: node_exporter
+    image: quay.io/prometheus/node-exporter:latest
+    ports:
+      - 9100:9100
+    command:
+      - '--path.rootfs=/host'
+    pid: host
+    restart: unless-stopped
+    volumes:
+      - '/:/host:ro,rslave'
+
+  pve-exporter:
+    container_name: pve-exporter
+    image: prompve/prometheus-pve-exporter
+    ports:
+      - 9221:9221
+    restart: unless-stopped
+    volumes:
+      - /opt/stacks/monitor-data/pve-exporter:/etc/pve-exporter
+    command:
+      - "--config.file=/etc/pve-exporter/pve.yml"

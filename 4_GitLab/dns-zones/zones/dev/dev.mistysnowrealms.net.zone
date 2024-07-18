@@ -1,0 +1,20 @@
+$TTL 2d
+
+$ORIGIN dev.mistysnowrealms.net. 
+@                       IN      SOA   ns1.sys.mistysnowrealms.net. sys.mistysnowrealms.net. (
+                                2024062100 ; serial number
+                                12h        ; refresh
+                                15m        ; update retry
+                                3w         ; expiry
+                                2h         ; minimum
+                                )
+
+                        IN              NS                      ns1.sys.mistysnowrealms.net.
+
+
+; -- dns records
+
+*                   IN              A                   172.16.100.6
+gitlab-runner       IN              A                   172.16.100.8
+tools               IN              A                   172.16.100.9
+monitor             IN              A                   172.16.100.10

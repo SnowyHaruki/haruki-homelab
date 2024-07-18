@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  grafana:
+      container_name: grafana-web
+      image: grafana/grafana:latest
+      ports:
+        - 3000:3000
+      restart: unless-stopped
+      volumes:
+        - /opt/stacks/grafana/data:/var/lib/grafana
+        - /opt/stacks/grafana/config:/etc/grafana/
+      user: "0"

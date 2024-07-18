@@ -1,0 +1,14 @@
+version: "3.3"
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    ports:
+      - 3000:3000
+    env_file: .env
+    volumes:
+      - /opt/stacks/homepage/data:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      PUID: $PUID
+      PGID: $PGID 

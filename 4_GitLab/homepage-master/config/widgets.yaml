@@ -1,0 +1,32 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/service-widgets
+
+- logo:
+    icon: https://gitlab.dev.msrls.net/root/assets/-/raw/main/2.png
+
+- greeting:
+    text_size: xl
+    text: MSRLS | Master Admin Dashboard
+
+- resources:
+    cpu: true
+    cputemp: true
+    tempmin: 0
+    tempmax: 100
+    memory: true
+    uptime: true
+    units: metric
+    disk: /
+
+- datetime:
+    text_size: xl
+    locale: pt
+    format:
+      dateStyle: short
+      timeStyle: short
+      hour12: true
+
+#- search:
+#    provider: duckduckgo
+#    target: _blank

@@ -1,0 +1,18 @@
+stages:
+  - triggers
+
+it-tools:
+  stage: triggers
+  trigger:
+    include: it-tools/.gitlab-ci.yml
+  rules:
+    - changes:
+        - it-tools/*
+
+explainshell:
+  stage: triggers
+  trigger:
+    include: explainshell/.gitlab-ci.yml
+  rules:
+    - changes:
+        - explainshell/*

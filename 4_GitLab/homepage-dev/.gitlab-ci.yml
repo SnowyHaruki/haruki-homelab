@@ -1,0 +1,19 @@
+image:
+  name: gitlab.msrls.local:5000/root/container-debian-12
+  entrypoint: [""]
+
+stages:
+   - deploy
+
+deploy:
+   stage: deploy
+   script:
+      - mkdir -p ~/.ssh
+      - cat ${gitlab_key} > ~/.ssh/id_rsa
+      - chmod 600 ~/.ssh/id_rsa
+      - scp -o StrictHostKeyChecking=no docker-compose.yaml .env dev.msrls.local:/opt/stacks/homepage
+      - scp -ro StrictHostKeyChecking=no config/* dev.msrls.local:/opt/stacks/homepage/data
+      - ssh -o StrictHostKeyChecking=no dev.msrls.local "ls -alhrt /opt/stacks/homepage/"
+      - ssh -o StrictHostKeyChecking=no dev.msrls.local "ls -alhrt /opt/stacks/homepage/data/"
+      - ssh -o StrictHostKeyChecking=no dev.msrls.local "cd /opt/stacks/homepage/ && docker compose up -d"
+

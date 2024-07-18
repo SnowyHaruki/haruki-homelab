@@ -1,0 +1,175 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/services
+
+- Hypervisors:
+    - Atlas01A Node:
+        href: https://atlas01a.sys.msrls.net/
+        icon: proxmox
+        description: Atlas01A PVE Node
+        siteMonitor: https://atlas01a.sys.msrls.net/
+        widget:
+           type: proxmox
+           url: https://atlas01a.msrls.local:8006
+           username: "{{HOMEPAGE_VAR_PROXMOX_USER}}"
+           password: "{{HOMEPAGE_VAR_PROXMOX_API_KEY}}"
+           node: atlas01a
+    - Anibis01A Node:
+        href: https://anubis01a.sys.msrls.net/
+        icon: proxmox
+        description: Anubis01A PVE Node
+        siteMonitor: https://anubis01a.sys.msrls.net/
+        widget:
+           type: proxmox
+           url: https://anubis01a.msrls.local:8006
+           username: "{{HOMEPAGE_VAR_PROXMOX_USER}}"
+           password: "{{HOMEPAGE_VAR_PROXMOX_API_KEY}}"
+           node: anubis01a
+
+- Storage:
+    - Gaia01A NAS:
+        href: https://gaia01a.sys.msrls.net/
+        icon: truenas-scale
+        description: Gaia01A TrueNAS
+        siteMonitor: https://gaia01a.sys.msrls.net
+        widget:
+           type: truenas
+           url: https://gaia01a.sys.msrls.net
+           key: "{{HOMEPAGE_VAR_TRUENAS_API_KEY}}" # not required if using username / password
+           enablePools: true # optional, defaults to false
+           nasType: scale # defaults to scale, must be set to 'core' if using enablePools with TrueNAS Core
+
+- Systems:
+   - Pi-Hole DNS:
+        href: https://dns-us.sys.msrls.net/admin/
+        icon: pi-hole
+        description: Pi-Hole Upstream DNS Server
+        siteMonitor: https://dns-us.sys.msrls.net/admin/
+        widget:
+           type: pihole
+           url: https://dns-us.sys.msrls.net
+           key: "{{HOMEPAGE_VAR_PIHOLE_API_KEY}}"
+   - Internal Reverse Proxy:
+        href: https://in-proxy.sys.msrls.net/
+        icon: nginx-proxy-manager
+        description: Internal Nginx Reverse Proxy
+        siteMonitor: https://in-proxy.sys.msrls.net/
+        widget:
+           type: npm
+           url: http://in-proxy.msrls.local:81
+           username: "{{HOMEPAGE_VAR_DEV_NPM_USER}}"
+           password: "{{HOMEPAGE_VAR_DEV_NPM_PW}}"
+   - PROD Reverse Proxy:
+        href: http://out-proxy.msrls.local:81
+        icon: nginx-proxy-manager
+        description: Production Nginx Reverse Proxy
+        siteMonitor: http://out-proxy.msrls.local:81
+        widget:
+           type: npm
+           url: http://out-proxy.msrls.local:81
+           username: "{{HOMEPAGE_VAR_PROD_NPM_USER}}"
+           password: "{{HOMEPAGE_VAR_PROD_NPM_PW}}"
+   - WG VPN Master:
+        href: https://master.vpn.msrls.net/
+        icon: wireguard
+        description: Master WGDashboard
+        siteMonitor: https://master.vpn.msrls.net/
+   - WG VPN DEV:
+        href: https://dev.vpn.msrls.net/
+        icon: wireguard
+        description: DEV WGDashboard
+        siteMonitor: https://dev.vpn.msrls.net/
+   - WG VPN HOME:
+        href: https://home.vpn.msrls.net/
+        icon: wireguard
+        description: HOME WGDashboard
+        siteMonitor: https://home.vpn.msrls.net/
+
+- Dev Apps:
+   - Gitlab:
+        href: https://gitlab.dev.msrls.net/
+        icon: gitlab
+        description: Gitlab Web
+        siteMonitor: https://gitlab.dev.msrls.net/
+   - EmulatorJS Admin:
+        href: https://emu-adm.app.msrls.net
+        icon: emulatorjs
+        description: EmulatorJS - Web Retro Arcade Console 
+        siteMonitor: https://emu-adm.app.msrls.net
+   - Dockge:
+        href: https://dockge.dev.msrls.net/
+        icon: dockge-light
+        description: Docker Manager
+        siteMonitor: https://dockge.dev.msrls.net/
+   - Explain Shell:
+        href: https://explainshell.dev.msrls.net/
+        icon: shell-tips-light
+        description: Explain Shell commands
+        siteMonitor: https://explainshell.dev.msrls.net/
+   - IT-Tools:
+        href: https://it-tools.dev.msrls.net/
+        icon: it-tools-light
+        description: Handy IT Tools Page
+        siteMonitor: https://it-tools.dev.msrls.net/
+
+- Monitoring:
+   - Grafana:
+        href: https://grafana.dev.msrls.net/
+        icon: grafana
+        description: Grafana metrics dashboard
+        siteMonitor: https://grafana.dev.msrls.net/
+   - Uptime-Kuma:
+        href: https://kuma-adm.dev.msrls.net/
+        icon: uptime-kuma
+        description: Uptime-Kuma Admin UI
+        siteMonitor: https://kuma-adm.dev.msrls.net/
+   - Uptime-Kuma DC Status:
+        href: https://dc.monitor.msrls.net/
+        icon: https://kuma-adm.dev.msrls.net/upload/logo1.png?t=1720886749862
+        description: Uptime-Kuma Datacenter Status Page
+        siteMonitor: https://dc.monitor.msrls.net/
+        widget:
+           type: uptimekuma
+           url: https://kuma-adm.dev.msrls.net
+           slug: dc
+   - Uptime-Kuma DC Components Status:
+        href: https://dc-comp.monitor.msrls.net/
+        icon: https://kuma-adm.dev.msrls.net/upload/logo1.png?t=1720886749862
+        description: Uptime-Kuma Datacenter Status Page
+        siteMonitor: https://dc-comp.monitor.msrls.net/
+        widget:
+           type: uptimekuma
+           url: https://kuma-adm.dev.msrls.net
+           slug: dc-comp
+
+
+
+- Apps:
+   - JellyFin:
+        href: https://jellyfin.app.msrls.net/
+        icon: jellyfin
+        description: JellyFin
+        siteMonitor: https://jellyfin.app.msrls.net/
+        widget:
+           type: jellyfin
+           url: https://jellyfin.app.msrls.net
+           key: "{{HOMEPAGE_VAR_JELLY_API_KEY}}"
+           enableBlocks: true # optional, defaults to false
+           enableNowPlaying: true # optional, defaults to true
+           enableUser: true # optional, defaults to false
+           showEpisodeNumber: true # optional, defaults to false
+           expandOneStreamToTwoRows: false # optional, defaults to true
+   - EmulatorJS Console:
+        href: https://emu-play.app.msrls.net
+        icon: emulatorjs
+        description: EmulatorJS - Web Retro Arcade Console 
+        siteMonitor: https://emu-play.app.msrls.net
+   - Pterodactyl Panel:
+        href: https://ptero.app.msrls.net/
+        icon: pterodactyl
+        description: Game Server Manager
+        siteMonitor: https://ptero.app.msrls.net/
+        widget:
+           type: pterodactyl
+           url: https://ptero.app.msrls.net
+           key: "{{HOMEPAGE_VAR_PTERO_API_KEY}}"

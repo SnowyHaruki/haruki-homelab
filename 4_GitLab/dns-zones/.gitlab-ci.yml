@@ -1,0 +1,39 @@
+image:
+  name: gitlab.msrls.local:5000/mistydev-master/dns/container-debian12:latest
+  entrypoint: [""]
+
+stages:
+   - validate
+   - deploy
+
+validate:
+   stage: validate
+   script:
+    - named-checkconf named.conf
+    - named-checkzone msrls.local zones/msrls.local.zone
+    - named-checkzone sys.msrls.net zones/sys/sys.msrls.net.zone
+    - named-checkzone sys.mistysnowrealms.net zones/sys/sys.mistysnowrealms.net.zone
+    - named-checkzone vpn.msrls.net zones/vpn/vpn.msrls.net.zone
+    - named-checkzone vpn.mistysnowrealms.net zones/vpn/vpn.mistysnowrealms.net.zone
+    - named-checkzone dev.msrls.net zones/dev/dev.msrls.net.zone
+    - named-checkzone dev.mistysnowrealms.net zones/dev/dev.mistysnowrealms.net.zone
+    - named-checkzone app.msrls.net zones/app/app.msrls.net.zone
+    - named-checkzone app.mistysnowrealms.net zones/app/app.mistysnowrealms.net.zone
+    - named-checkzone monitor.msrls.net zones/monitor/monitor.msrls.net.zone
+
+deploy:
+   stage: deploy
+   script:
+      - mkdir -p ~/.ssh
+      - cat ${gitlab_key} > ~/.ssh/id_rsa
+      - chmod 600 ~/.ssh/id_rsa
+      - scp -o StrictHostKeyChecking=no named.conf ns1.msrls.local:/etc/bind/
+      - ssh -o StrictHostKeyChecking=no ns1.msrls.local "ls -lhrt /etc/bind/ | grep -i 'named.conf'"
+      - scp -ro StrictHostKeyChecking=no zones/* ns1.msrls.local:/app/zones/
+      - ssh -o StrictHostKeyChecking=no ns1.msrls.local "ls -lhrt /app/zones/"
+      - ssh -o StrictHostKeyChecking=no ns1.msrls.local "ls -lhrt /app/zones/sys"
+      - ssh -o StrictHostKeyChecking=no ns1.msrls.local "ls -lhrt /app/zones/vpn"
+      - ssh -o StrictHostKeyChecking=no ns1.msrls.local "ls -lhrt /app/zones/dev"
+      - ssh -o StrictHostKeyChecking=no ns1.msrls.local "ls -lhrt /app/zones/app"
+      - ssh -o StrictHostKeyChecking=no ns1.msrls.local "ls -lhrt /app/zones/monitor"
+      - ssh -o StrictHostKeyChecking=no ns1.msrls.local "rndc reconfig && rndc reload"

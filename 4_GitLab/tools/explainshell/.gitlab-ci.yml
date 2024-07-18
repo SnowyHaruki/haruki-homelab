@@ -1,0 +1,28 @@
+image:
+  name: gitlab.msrls.local:5000/root/container-debian-12
+  entrypoint: [""]
+
+stages:
+   - deploy
+   - post-deploy
+
+deploy:
+   stage: deploy
+   script:
+      - mkdir -p ~/.ssh
+      - cat ${gitlab_key} > ~/.ssh/id_rsa
+      - chmod 600 ~/.ssh/id_rsa
+      - ssh -o StrictHostKeyChecking=no tools.msrls.local "curl -L -o /tmp/dump.gz https://github.com/idank/explainshell/releases/download/db-dump/dump.gz"
+      - scp -ro StrictHostKeyChecking=no explainshell/* tools.msrls.local:/opt/stacks/explainshell
+      - ssh -o StrictHostKeyChecking=no tools.msrls.local "ls -alhrt /opt/stacks/explainshell/"
+      - ssh -o StrictHostKeyChecking=no tools.msrls.local "cd /opt/stacks/explainshell/ && docker compose build && docker compose up -d"
+
+post-deploy:
+   stage: post-deploy
+   script:
+      - mkdir -p ~/.ssh
+      - cat ${gitlab_key} > ~/.ssh/id_rsa
+      - chmod 600 ~/.ssh/id_rsa
+      - ssh -o StrictHostKeyChecking=no tools.msrls.local "cd /opt/stacks/explainshell/ && docker compose exec -T db mongorestore --archive --gzip < /tmp/dump.gz"
+      - ssh -o StrictHostKeyChecking=no tools.msrls.local "cd /opt/stacks/explainshell/ && docker compose exec -T web make tests"
+      - ssh -o StrictHostKeyChecking=no tools.msrls.local 'cd /opt/stacks/explainshell/ && docker compose exec -T web bash -c "PYTHONPATH=. python explainshell/manager.py --log info /usr/share/man/man1/echo.1.gz"'

@@ -1,0 +1,29 @@
+name: Gitea Actions Demo
+run-name: ${{ gitea.actor }} is testing out Gitea Actions 🚀
+on: [push]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check file
+        run: |
+          named-checkzone dev.msrls.net dev.msrls.net.zone
+
+  deploy:
+    needs: [validate]
+    runs-on: ubuntu-latest
+    steps:
+     - name: create ssh folder
+       run: mkdir -p ~/.ssh
+     - name: setup ssh key
+       run: echo "${{ secrets.GITKEY }}" > ~/.ssh/id_rsa
+     - name: setup ssh key permissions
+       run: chmod 600 ~/.ssh/id_rsa
+     - name: copy file to server
+       run: scp -o StrictHostKeyChecking=no dev.msrls.net.zone 172.16.100.3:/app/
+     - name: check if the file was sent to server
+       run: ssh -o StrictHostKeyChecking=no 172.16.100.3 "ls -lhrt /app/"
+     - name: apply changes on server
+       run: ssh -o StrictHostKeyChecking=no 172.16.100.3 "rndc reload"
+     - run: echo "This job's status is ${{ job.status }}."

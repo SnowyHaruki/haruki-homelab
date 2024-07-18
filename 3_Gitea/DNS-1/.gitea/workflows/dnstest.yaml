@@ -1,0 +1,25 @@
+name: Gitea Actions Demo
+run-name: ${{ gitea.actor }} is testing out Gitea Actions 🚀
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: install essencial and dns 
+        run: |
+          apt update && apt install -y bind9 bind9utils bind9-doc openssh-client
+      - name: clone repo
+        uses: actions/checkout@v4
+      - name: check file
+        run: |
+          named-checkzone dev.msrls.net dev.msrls.net.zone
+      - run: mkdir -p ~/.ssh
+      - run: echo "${{ vars.GITKEY }}" > ~/.ssh/id_rsa
+      - run: cat ~/.ssh/id_rsa
+      - run: chmod 600 ~/.ssh/id_rsa
+      - run: ls -lhrt ~/.ssh/
+      - run: scp -o StrictHostKeyChecking=no dev.msrls.net.zone 172.16.100.3:/app/
+      - run: ssh -o StrictHostKeyChecking=no 172.16.100.3 "ls -lhrt /app/" 
+      - run: ssh -o StrictHostKeyChecking=no 172.16.100.3 "rndc reload"
+      - run: echo "This job's status is ${{ job.status }}."

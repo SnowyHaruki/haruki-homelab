@@ -1,0 +1,22 @@
+$TTL 2d
+
+$ORIGIN app.msrls.net. 
+@                       IN      SOA   ns1.msrls.local. sys.msrls.local. (
+                                2024062500 ; serial number
+                                12h        ; refresh
+                                15m        ; update retry
+                                3w         ; expiry
+                                2h         ; minimum
+                                )
+
+                        IN              NS                      ns1.msrls.local.
+
+
+; -- dns records
+
+*                       IN              A                   172.16.100.6
+master-adm              IN              A                   172.16.98.10
+dev-adm                 IN              A                   192.168.110.1
+home-adm                IN              A                   192.168.120.1
+home-wings-01           IN              A                   192.168.120.3
+play                    IN              A                   192.168.120.3

@@ -1,0 +1,23 @@
+$TTL 2d
+
+$ORIGIN sys.mistysnowrealms.net.
+@                       IN      SOA   ns1.sys.mistysnowrealms.net. sys.mistysnowrealms.net. (
+                                2024062100 ; serial number
+                                12h        ; refresh
+                                15m        ; update retry
+                                3w         ; expiry
+                                2h         ; minimum
+                                )
+
+                        IN              NS                      ns1.sys.mistysnowrealms.net.
+
+ns1                     IN              A                       172.16.100.3
+dns-us                  IN              A                       172.16.100.4
+
+; -- dns records
+
+in-proxy            IN              A                   172.16.100.6
+out-proxy           IN              A                   10.0.10.1
+atlas01a            IN              A                   172.16.100.1
+anubis01a           IN              A                   172.16.100.2
+gaia01a             IN              A                   172.16.1.3

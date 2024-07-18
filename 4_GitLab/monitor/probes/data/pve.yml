@@ -1,0 +1,5 @@
+default:
+    user: REDACTED
+    token_name: "REDACTED"
+    token_value: "REDACTED"
+    verify_ssl: false

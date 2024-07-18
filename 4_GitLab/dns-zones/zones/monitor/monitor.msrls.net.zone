@@ -1,0 +1,17 @@
+$TTL 2d
+
+$ORIGIN monitor.msrls.net. 
+@                       IN      SOA   ns1.sys.msrls.net. sys.monitor.msrls.net. (
+                                2024071300 ; serial number
+                                12h        ; refresh
+                                15m        ; update retry
+                                3w         ; expiry
+                                2h         ; minimum
+                                )
+
+                        IN              NS                      ns1.sys.msrls.net.
+
+
+; -- dns records
+
+*                 IN              A                   172.16.100.6

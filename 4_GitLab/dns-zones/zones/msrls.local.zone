@@ -1,0 +1,63 @@
+$TTL 2d
+
+$ORIGIN msrls.local.
+@                       IN      SOA   ns1.msrls.local. sys.msrls.local. (
+                                2024062700 ; serial number
+                                12h        ; refresh
+                                15m        ; update retry
+                                3w         ; expiry
+                                2h         ; minimum
+                                )
+
+                        IN              NS                      ns1.msrls.local.
+
+ns1                     IN              A                       172.16.100.3
+dns-us                  IN              A                       172.16.100.4
+
+; -- dns records
+
+; -- 172.16.1.0/24 zone
+
+atlas01a            IN              A                   172.16.1.1
+anubis01a           IN              A                   172.16.1.2
+gaia01a             IN              A                   172.16.1.3
+
+; -- 172.16.100.0/24 zone
+
+atlas01a-adm        IN              A                   172.16.100.1
+anubis01a-adm       IN              A                   172.16.100.2
+sp0-vpn             IN              A                   172.16.100.5
+in-proxy            IN              A                   172.16.100.6
+gitlab              IN              A                   172.16.100.7
+gitlab-runner       IN              A                   172.16.100.8
+tools               IN              A                   172.16.100.9
+monitor             IN              A                   172.16.100.10
+
+; -- 172.16.98.0/24 zone
+
+master-vpn          IN              A                   172.16.98.253
+master              IN              A                   172.16.98.10
+
+; -- 192.168.110.0/24 zone
+
+dev-vpn             IN              A                   192.168.110.253
+dev                 IN              A                   192.168.110.1
+
+; -- 192.168.120.0/24 zone
+
+home-vpn            IN              A                   192.168.120.253
+home                IN              A                   192.168.120.1
+ptero               IN              A                   192.168.120.2
+
+; -- 10.0.10.0/8 zone
+
+out-proxy           IN              A                   10.0.10.1
+
+
+
+
+
+
+
+
+

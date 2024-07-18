@@ -1,0 +1,43 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/settings
+
+title: MSRLS Dev Dash
+favicon: https://gitlab.dev.msrls.net/root/assets/-/raw/main/favicon.ico?ref_type=heads
+background:
+  image: https://steamcdn-a.akamaihd.net/steamcommunity/public/images/items/1435670/4f5ad2ab1134a136877742151a4298472f3910fd.jpg
+  blur: sm # sm, "", md, xl... see https://tailwindcss.com/docs/backdrop-blur
+  saturate: 50 # 0, 50, 100... see https://tailwindcss.com/docs/backdrop-saturate
+  brightness: 50 # 0, 50, 75... see https://tailwindcss.com/docs/backdrop-brightness
+  opacity: 50 # 0-100
+
+theme: dark
+color: indigo
+headerStyle: underlined
+disableCollapse: true
+hideVersion: true
+
+providers:
+  openweathermap: openweathermapapikey
+  weatherapi: weatherapiapikey
+
+useEqualHeights: true
+layout:
+  Hypervisors:
+    header: true
+    icon: mdi-server
+    style: row
+    columns: 2
+  Storage:
+    header: true
+    icon: mdi-harddisk
+    style: column
+    columns: 4
+  Systems:
+    icon: mdi-cog
+    style: row
+    columns: 3
+  Apps:
+    icon: mdi-apps
+    sytle: row
+    columns: 1

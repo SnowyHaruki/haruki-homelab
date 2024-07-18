@@ -1,0 +1,5 @@
+FROM debian:12
+
+RUN apt -y update
+RUN apt -y bind9 bind9utils bind9-doc openssh-client
+

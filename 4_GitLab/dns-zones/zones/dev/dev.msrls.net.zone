@@ -1,0 +1,18 @@
+$TTL 2d
+
+$ORIGIN dev.msrls.net. 
+@                       IN      SOA   ns1.sys.msrls.net. sys.msrls.net. (
+                                2024062500 ; serial number
+                                12h        ; refresh
+                                15m        ; update retry
+                                3w         ; expiry
+                                2h         ; minimum
+                                )
+
+                        IN              NS                      ns1.sys.msrls.net.
+
+
+; -- dns records
+
+*                   IN              A                   172.16.100.6
+gitlab-runner       IN              A                   172.16.100.8
